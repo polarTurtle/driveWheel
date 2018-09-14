@@ -29,7 +29,7 @@ void MyVehicle::draw()
 	rectangle.setColor(red, green, blue);
 	rectangle.draw();
 
-	TriangularPrism triangle = TriangularPrism(6, 0, 0, 4, 2, 4, 0.5);
+	TriangularPrism triangle = TriangularPrism(4, 0, 0, 4, 2, 4, 0.5);
 	triangle.setColor(red, green, blue);
 	triangle.draw();
 
@@ -37,7 +37,7 @@ void MyVehicle::draw()
 	trapezoid.setColor(red, green, blue);
 	trapezoid.draw();
 
-	Cylinder circle = Cylinder(0, -3, 0, 1, 4);
+	Cylinder circle = Cylinder(0, -2, 0, 1, 4);
 	circle.setColor(red, green, blue);
 	circle.draw();
 };
