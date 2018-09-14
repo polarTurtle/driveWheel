@@ -6,21 +6,38 @@
 #include "TrapezoidalPrism.hpp"
 #include "Cylinder.hpp"
 
+#include <Windows.h>
+#include <tchar.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+
+MyVehicle::MyVehicle(double x_, double y_, double z_) {
+	x = x_;
+	y = y_;
+	z = z_;
+}
+
 void MyVehicle::draw()
 {
-	RectangularPrism rectangle = RectangularPrism(x+10, y+10, z+10, 5, 5, 5);
-	rectangle.setColor(1, 1, 0);
+	glPushMatrix();
+
+	glTranslatef(x, y, z);
+	glRotated(rotation, 0, 1, 0);
+
+	RectangularPrism rectangle = RectangularPrism(0, 0, 0,  4, 2, 4);
+	rectangle.setColor(red, green, blue);
 	rectangle.draw();
 
-	TriangularPrism triangle = TriangularPrism(x-10, y-10, z-10, 5, 5, 0.5);
-	triangle.setColor(1, 0, 1);
+	TriangularPrism triangle = TriangularPrism(6, 0, 0, 4, 2, 4, 0.5);
+	triangle.setColor(red, green, blue);
 	triangle.draw();
 
-	TrapezoidalPrism trapezoid = TrapezoidalPrism(x+10, y-10, z+10, 10, 10, 3, 3, 3);
-	trapezoid.setColor(0, 1, 1);
+	TrapezoidalPrism trapezoid = TrapezoidalPrism(0, 2, 0, 4, 2, 4, 1, 1);
+	trapezoid.setColor(red, green, blue);
 	trapezoid.draw();
 
-	Cylinder circle = Cylinder(x+10, y+10, z-10, 5, 10);
-	circle.setColor(0.5, 1, 0.5);
+	Cylinder circle = Cylinder(0, -3, 0, 1, 4);
+	circle.setColor(red, green, blue);
 	circle.draw();
 };

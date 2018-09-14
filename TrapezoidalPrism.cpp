@@ -16,12 +16,12 @@ TrapezoidalPrism::TrapezoidalPrism(double x_, double y_, double z_, double xlent
 
 void TrapezoidalPrism::draw()
 {
-	//glPolygonMode(GL_FRONT, GL_LINE); // draw wireframe polygons
-	glColor3f(red, green, blue); // set color green
-	//glCullFace(GL_BACK); // don't draw back faces
-	//glEnable(GL_CULL_FACE); // don't draw back faces
-	//glTranslatef(-10, 1, 0); // position
+	glPushMatrix();
+
 	glTranslatef(x, y, z);
+	glRotated(rotation, 0, 1, 0);
+
+	glColor3f(red, green, blue);
 	glBegin(GL_QUADS);
 
 	glVertex3f(-xLenth / 2, 0, zLenth / 2);
@@ -55,4 +55,5 @@ void TrapezoidalPrism::draw()
 	glVertex3f(-bXLenth / 2, yLenth, -zLenth / 2);
 
 	glEnd();
+	glPopMatrix();
 }

@@ -9,21 +9,22 @@
 
 #define PI 3.14159265
 
-TriangularPrism::TriangularPrism(double x_, double y_, double z_, double xlenth_, double zLenth_, double theta_) : Shape(x_, y_, z_) {
+TriangularPrism::TriangularPrism(double x_, double y_, double z_, double xlenth_, double yLenth_, double zLenth_, double theta_) : Shape(x_, y_, z_) {
 	xLenth = xlenth_;
+	yLenth = yLenth_;
 	zLenth = zLenth_;
 	theta = theta_*PI;
 }
 
 void TriangularPrism::draw()
 {
-	//glPolygonMode(GL_FRONT, GL_LINE); // draw wireframe polygons
-	glColor3f(red, green, blue); // set color green
-	//glCullFace(GL_BACK); // don't draw back faces
-	//glEnable(GL_CULL_FACE); // don't draw back faces
-	//glTranslatef(-10, 1, 0); // position
+	glPushMatrix();
+
 	glTranslatef(x, y, z);
-	glBegin(GL_QUADS);	
+	glRotated(rotation, 0, 1, 0);
+
+	glColor3f(red, green, blue);
+	glBegin(GL_QUADS);
 
 	glVertex3f(-xLenth / 2, 0, zLenth / 2);
 	glVertex3f(xLenth / 2, 0, zLenth / 2);
@@ -32,24 +33,25 @@ void TriangularPrism::draw()
 
 	glVertex3f(xLenth / 2, 0, zLenth / 2);
 	glVertex3f(xLenth / 2, 0, -zLenth / 2);
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, -zLenth / 2);
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, -zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, zLenth / 2);
 
 	glVertex3f(-xLenth / 2, 0, zLenth / 2);
 	glVertex3f(-xLenth / 2, 0, -zLenth / 2);
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, -zLenth / 2);
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, -zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, zLenth / 2);
 
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, -zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, -zLenth / 2);
 	glVertex3f(xLenth / 2, 0, -zLenth / 2);
 	glVertex3f(-xLenth / 2, 0, -zLenth / 2);
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, -zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, -zLenth / 2);
 
 
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, zLenth / 2);
 	glVertex3f(-xLenth / 2, 0, zLenth / 2);
 	glVertex3f(xLenth / 2, 0, zLenth / 2);
-	glVertex3f(cos(theta)*xLenth - (xLenth / 2), sin(theta)*xLenth, zLenth / 2);
+	glVertex3f(cos(theta)*yLenth - (xLenth / 2), sin(theta)*yLenth, zLenth / 2);
 
 	glEnd();
+	glPopMatrix();
 };

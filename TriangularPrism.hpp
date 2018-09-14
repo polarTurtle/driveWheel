@@ -3,9 +3,9 @@
 class TriangularPrism : public Shape {
 
 private:
-	double xLenth, zLenth, theta;
+	double xLenth, yLenth, zLenth, theta;
 
 public:
-	TriangularPrism(double x_, double y_, double z_, double xlenth_, double zLenth_, double theta_);
+	TriangularPrism(double x_, double y_, double z_, double xlenth_, double yLenth, double zLenth_, double theta_);
 	void draw();
 };
