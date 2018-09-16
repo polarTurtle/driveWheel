@@ -23,7 +23,7 @@ void MyVehicle::draw()
 	glPushMatrix();
 
 	glTranslatef(x, y, z);
-	glRotated(rotation, 0, 1, 0);
+	glRotated(-rotation, 0, 1, 0);
 
 	RectangularPrism rectangle = RectangularPrism(0, 0, 0,  4, 2, 4);
 	rectangle.setColor(red, green, blue);
@@ -37,7 +37,13 @@ void MyVehicle::draw()
 	trapezoid.setColor(red, green, blue);
 	trapezoid.draw();
 
-	Cylinder circle = Cylinder(0, -2, 0, 1, 4);
-	circle.setColor(red, green, blue);
-	circle.draw();
+	Cylinder leftCircle = Cylinder(0, 0, -3, 2, 1);
+	leftCircle.setColor(red, green, blue);
+	leftCircle.draw();
+
+	Cylinder rightCircle = Cylinder(0, 0, 2, 2, 1);
+	rightCircle.setColor(red, green, blue);
+	rightCircle.draw();
+
+	glPopMatrix();
 };

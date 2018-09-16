@@ -26,6 +26,7 @@
 #include "TrapezoidalPrism.hpp"
 #include "Cylinder.hpp"
 #include "MyVehicle.hpp"
+#include "OtherVehicle.hpp"
 
 #include "RemoteDataManager.hpp"
 #include "Messages.hpp"
@@ -313,20 +314,17 @@ void idle() {
 				otherVehicles.clear();
 
 				// uncomment this line to connect to the robotics server.
-				//RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
+				RemoteDataManager::Connect("www.robotics.unsw.edu.au","18081");
 
 				// on connect, let's tell the server what we look like
 				if (RemoteDataManager::IsConnected()) {
 					ObstacleManager::get()->removeAll();
-
 					VehicleModel vm;
-					vm.remoteID = 0;
 
-					//
-					// student code goes here
-					//
+					//vm.shapes = []
 
-					RemoteDataManager::Write(GetVehicleModelStr(vm));
+					
+					RemoteDataManager::Write("55050 : RectangularPrism ( [8,1,4] [0,1,0,0,1,0,1];Cylinder ( [1,1] [-2.5,0,2.5,0,1,1,1] wheel=T steer=F;Cylinder ( [1,1] [2.5,0,2.5,0,1,1,1] wheel=T steer=T;Cylinder ( [1,1] [-2.5,0,-2.5,0,1,1,1] wheel=T steer=F;Cylinder ( [1,1] [2.5,0,-2.5,0,1,1,1] wheel=T steer=T;RectangularPrism ( [3,0.5,0.5] [-2.5,2,-1.75,0,0.5,0.2,0.4];RectangularPrism ( [3,0.5,0.5] [-2.5,2,1.75,0,0.5,0.2,0.4];TrapezoidalPrism ( [5,0,3.5,4,1] [1.5,2,0,0,0,1,0]");
 				}
 			}
 		}
@@ -358,13 +356,9 @@ void idle() {
 							std::vector<VehicleModel> models = GetVehicleModels(msg.payload);
 							for(unsigned int i = 0; i < models.size(); i++) {
 								VehicleModel vm = models[i];
-								
-								// uncomment the line below to create remote vehicles
-								//otherVehicles[vm.remoteID] = new MyVehicle();
 
-								//
-								// more student code goes here
-								//
+								otherVehicles[vm.remoteID] = new OtherVehicle(vm);								
+
 							}
 							break;
 						}
